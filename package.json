@@ -1,0 +1,23 @@
+{
+  "name": "wdd330-travel-experience-planner---final-project",
+  "version": "1.0.0",
+  "description": "App to plan trips with real-time recommendations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sorayaskavinski/wdd330-travel-experience-planner---final-project.git"
+  },
+  "keywords": [],
+  "author": "Soraya Skavinski",
+  "license": "ISC",
+   "dependencies": {},
+  "devDependencies": {},
+  "bugs": {
+    "url": "https://github.com/sorayaskavinski/wdd330-travel-experience-planner---final-project/issues"
+  },
+  "homepage": "https://github.com/sorayaskavinski/wdd330-travel-experience-planner---final-project#readme"
+}

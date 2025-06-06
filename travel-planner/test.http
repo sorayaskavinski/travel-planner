@@ -1,0 +1,18 @@
+### Buscar cidades por nome (GeoDB Cities API)
+GET https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=paris
+X-RapidAPI-Key: SUA_CHAVE_AQUI
+X-RapidAPI-Host: wft-geo-db.p.rapidapi.com
+
+###
+
+### Buscar atrações (Tripadvisor API - exemplo genérico)
+GET https://travel-advisor.p.rapidapi.com/attractions/list?location_id=293919&currency=USD&lang=en_US
+X-RapidAPI-Key: SUA_CHAVE_AQUI
+X-RapidAPI-Host: travel-advisor.p.rapidapi.com
+
+###
+
+### Buscar eventos em uma cidade (Eventbrite API)
+GET https://www.eventbriteapi.com/v3/events/search/?location.address=paris
+Authorization: Bearer SUA_CHAVE_DO_EVENTBRITE
+
