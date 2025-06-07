@@ -1,3 +1,5 @@
+# 🌐 Published in: travel-experience-planner.netlify.app
+
 # 🌍 Travel Experience Planner
 
 Web App to plan personalized travel experiences, with real-time attractions, restaurants and events.
@@ -19,7 +21,25 @@ Web App to plan personalized travel experiences, with real-time attractions, res
 - Tripadvisor API (via RapidAPI)
 - Eventbrite API
 - Netlify (deploy)
-- REST Client (para testes)
+- REST Client (for tests)
+
+## 📂 Project Structure
+travel-planner/
+│
+├── index.html
+├── styles.css
+├── main.mjs
+├── api.mjs
+├── ui.mjs
+├── map.mjs
+├── storage.mjs
+├── data.json
+├── test.http
+├── package.json
+├── netlify.toml
+└── README.md
+
+## 📌 Author :  Soraya Skavinski ✨
 
 
 
