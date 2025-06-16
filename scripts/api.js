@@ -1,5 +1,8 @@
-const GEO_API_URL = 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities';
-const API_KEY = '706db45873mshfbc21bddaf47f67p1d89f9jsn62c3df8b1009'; 
+const GEO_API_URL = import.meta.env.VITE_GEO_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
+const API_HOST = import.meta.env.VITE_API_HOST;
+console.log(GEO_API_URL); 
+
 
 export async function fetchCities(query) {
   try {
@@ -7,13 +10,14 @@ export async function fetchCities(query) {
       method: 'GET',
       headers: {
         'X-RapidAPI-Key': API_KEY,
-        'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
-      }
+        'X-RapidAPI-Host': API_HOST,
+      },
     });
+
     const data = await response.json();
     return data.data;
   } catch (error) {
-    console.error("Erro ao buscar cidades:", error);
+    console.error('Error while searching cities: ', error);
     return [];
   }
 }
