@@ -4,13 +4,13 @@
   "description": "Web App to plan personalized travel experiences, with real-time attractions, restaurants and events.",
   "main": "index.js",
   "scripts": {
-    "start": "lite-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
     "dev": "netlify dev",
     "build": "netlify build",
     "deploy": "netlify deploy --prod",
+    "start": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {    
     "type": "git",
     "url": "git+https://github.com/sorayaskavinski/wdd330-travel-experience-planner---final-project.git"
   },
