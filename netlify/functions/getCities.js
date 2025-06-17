@@ -1,30 +1,45 @@
-exports.handler = async (event) => { 
-  
+exports.handler = async (event) => {
   const query = event.queryStringParameters.namePrefix;
-  
+  const username = process.env.GEONAMES_USERNAME;
 
-  const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${query}`;
+  if (!query) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: "Missing namePrefix parameter" }),
+    };
+  }
 
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': process.env.GEO_API_KEY,
-      'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
-    }
-  };
+  const url = `https://secure.geonames.org/searchJSON?name_startsWith=${encodeURIComponent(query)}&maxRows=10&featureClass=P&orderby=population&username=${username}`;
 
   try {
-    const response = await fetch(url, options);
-    const data = await response.json();    
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (!data.geonames) {
+      return {
+        statusCode: 200,
+        body: JSON.stringify([]),
+      };
+    }
+
+    
+    const cities = data.geonames.map(city => ({
+      name: city.name,
+      countryCode: city.countryCode,
+      lat: city.lat,
+      lng: city.lng,
+      population: city.population,
+    }));
 
     return {
       statusCode: 200,
-      body: JSON.stringify(data)
+      body: JSON.stringify(cities),
     };
-  } catch (error) {    
+  } catch (error) {
+    console.error("GeoNames API error:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed fetching data' })
+      body: JSON.stringify({ error: "Error fetching cities" }),
     };
   }
 };

@@ -19,36 +19,45 @@ searchBtn.addEventListener('click', async () => {
   } else {
     results.innerHTML = '<p>No results found.</p>';
   }
-
-  //get restaurants
-  const items = document.querySelectorAll('.result-item');
-  items.forEach(item => {
-    item.addEventListener('click', async () => {
-      const city = item.getAttribute('data-city');
-      const country = item.getAttribute('data-country');
-
-      cityInput.value = `${city}, ${country}`;
-      results.innerHTML = '';
-      alert(`You've selected: ${city}, ${country}`);
-
-      document.getElementById('extras').style.display = 'block';
-
-      const restaurants = await fetchRestaurants(city, country);
-      renderRestaurants(restaurants);
-
-      function renderRestaurants(restaurants) {
-      const container = document.getElementById('restaurants');
-      container.innerHTML = "<h4>🍽️ Recommended Restaurants:</h4>" +
-        restaurants.map(r => `
-          <div class="restaurant-card">
-            <img src="${r.image}" alt="${r.name}" width="100" />
-            <p><strong>${r.name}</strong><br/>
-            ${r.address}<br/>
-            ⭐ ${r.rating} – <a href="${r.url}" target="_blank">See on Yelp</a></p>
-          </div>
-        `).join('');
-    }
-
-    });
-  });
 });
+
+// Event delegation para resultados de cidades
+results.addEventListener('click', async (event) => {
+  const item = event.target.closest('.result-item');
+  if (!item) return;
+
+  const city = item.getAttribute('data-city');
+  const country = item.getAttribute('data-country');
+
+  cityInput.value = `${city}, ${country}`;
+  results.innerHTML = '';
+  alert(`You've selected: ${city}, ${country}`);
+
+  document.getElementById('extras').style.display = 'block';
+
+  const restaurants = await fetchRestaurants(city, country);
+  renderRestaurants(restaurants);
+});
+
+function renderRestaurants(restaurants) {
+  const container = document.getElementById('restaurants');
+  container.innerHTML = '';
+
+  if (!Array.isArray(restaurants) || restaurants.length === 0) {
+    container.innerHTML = "<p>😕 No restaurant found.</p>";
+    return;
+  }
+
+  container.innerHTML = "<h4>🍽️ Recommended Restaurants:</h4>" +
+    restaurants.map(r => `
+      <div class="restaurant-card">
+        <img src="${r.image}" alt="${r.name}" width="100" />
+        <p><strong>${r.name}</strong><br/>
+        ${r.address}<br/>
+        ⭐ ${r.rating} (${r.review_count} reviews) ${r.price ? '– ' + r.price : ''}<br/>
+        📞 ${r.phone}<br/>
+        ${r.is_closed ? '<span style="color:red">Closed</span>' : '<span style="color:green">Open</span>'} <br/>
+        <a href="${r.url}" target="_blank">🔗 See on Yelp</a></p>
+      </div>
+    `).join('');
+}
