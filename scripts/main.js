@@ -1,4 +1,4 @@
-import { fetchCities } from './api.js';
+import { fetchCities, fetchRestaurants } from './api.js';
 
 const searchBtn = document.getElementById('searchBtn');
 const cityInput = document.getElementById('cityInput');
@@ -10,7 +10,6 @@ searchBtn.addEventListener('click', async () => {
 
   const cities = await fetchCities(query);
 
-
   if (cities.length) {
     results.innerHTML = cities.map(city => `
       <div class="result-item" data-city="${city.name}" data-country="${city.countryCode}">
@@ -21,16 +20,35 @@ searchBtn.addEventListener('click', async () => {
     results.innerHTML = '<p>No results found.</p>';
   }
 
-  // ➕ Adding and event listener
+  //get restaurants
   const items = document.querySelectorAll('.result-item');
   items.forEach(item => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', async () => {
       const city = item.getAttribute('data-city');
       const country = item.getAttribute('data-country');
-      alert(`You've selected: ${city}, ${country}`);
-      
+
       cityInput.value = `${city}, ${country}`;
       results.innerHTML = '';
+      alert(`You've selected: ${city}, ${country}`);
+
+      document.getElementById('extras').style.display = 'block';
+
+      const restaurants = await fetchRestaurants(city, country);
+      renderRestaurants(restaurants);
+
+      function renderRestaurants(restaurants) {
+      const container = document.getElementById('restaurants');
+      container.innerHTML = "<h4>🍽️ Recommended Restaurants:</h4>" +
+        restaurants.map(r => `
+          <div class="restaurant-card">
+            <img src="${r.image}" alt="${r.name}" width="100" />
+            <p><strong>${r.name}</strong><br/>
+            ${r.address}<br/>
+            ⭐ ${r.rating} – <a href="${r.url}" target="_blank">See on Yelp</a></p>
+          </div>
+        `).join('');
+    }
+
     });
   });
 });

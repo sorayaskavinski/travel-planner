@@ -8,3 +8,15 @@ export async function fetchCities(query) {
     return [];
   }
 }
+
+//restaurant API
+export async function fetchRestaurants(city, country) {
+  try {
+    const response = await fetch(`/.netlify/functions/getRestaurants?city=${city}&country=${country}`);
+    const data = await response.json();
+    return data.restaurants || [];
+  } catch (err) {
+    console.error("Error at searching restaurants", err);
+    return [];
+  }
+}
