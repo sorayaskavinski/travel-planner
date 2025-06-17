@@ -1,3 +1,21 @@
 {
-	"siteId": "a98760db-6313-4a22-9dc4-9021b7d1f88a"
+	"siteId": "a98760db-6313-4a22-9dc4-9021b7d1f88a",
+	"geolocation": {
+		"data": {
+			"city": "São Bernardo do Campo",
+			"country": {
+				"code": "BR",
+				"name": "Brazil"
+			},
+			"subdivision": {
+				"code": "SP",
+				"name": "São Paulo"
+			},
+			"timezone": "America/Sao_Paulo",
+			"latitude": -23.695,
+			"longitude": -46.5616,
+			"postalCode": "09900"
+		},
+		"timestamp": 1750122865130
+	}
 }

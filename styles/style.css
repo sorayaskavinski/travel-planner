@@ -31,7 +31,7 @@ header {
 .hero-section {
   width: 100%;
   height: 80vh; 
-  background-image: url('/travel-planner/images/banner.webp');
+  background-image: url('/images/banner.webp');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -84,11 +84,17 @@ header {
   text-align: center;
 }
 
-.results{
-  border-color: black;
-  background-color: beige;
-  color: var(--text-color);
+.result-item {
+  padding: 8px;
+  margin: 4px 0;
+  background-color: #f2f2f2;
   border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.result-item:hover {
+  background-color: #dceeff;
 }
 
 
