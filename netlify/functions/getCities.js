@@ -1,7 +1,7 @@
-const fetch = require('node-fetch');
-
-exports.handler = async (event) => {
+exports.handler = async (event) => { 
+  
   const query = event.queryStringParameters.namePrefix;
+  
 
   const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${query}`;
 
@@ -15,13 +15,13 @@ exports.handler = async (event) => {
 
   try {
     const response = await fetch(url, options);
-    const data = await response.json();
+    const data = await response.json();    
 
     return {
       statusCode: 200,
       body: JSON.stringify(data)
     };
-  } catch (error) {
+  } catch (error) {    
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Failed fetching data' })

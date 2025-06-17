@@ -10,10 +10,11 @@ searchBtn.addEventListener('click', async () => {
 
   const cities = await fetchCities(query);
 
+
   if (cities.length) {
     results.innerHTML = cities.map(city => `
-      <div class="result-item" data-city="${city.city}" data-country="${city.country}">
-        <p><strong>${city.city}</strong>, ${city.country}</p>
+      <div class="result-item" data-city="${city.name}" data-country="${city.countryCode}">
+        <p><strong>${city.name}</strong> <small>(${city.countryCode})</small></p>
       </div>
     `).join('');
   } else {
