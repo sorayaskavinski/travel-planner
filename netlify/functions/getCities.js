@@ -1,14 +1,14 @@
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
-  const { namePrefix } = event.queryStringParameters;
+  const query = event.queryStringParameters.namePrefix;
 
-  const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${namePrefix}&limit=10`;
+  const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${query}`;
 
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '706db45873mshfbc21bddaf47f67p1d89f9jsn62c3df8b1009',
+      'X-RapidAPI-Key': process.env.GEO_API_KEY,
       'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
     }
   };
@@ -24,7 +24,7 @@ exports.handler = async (event) => {
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Error while fetching cities', details: error.message })
+      body: JSON.stringify({ error: 'Failed fetching data' })
     };
   }
 };
