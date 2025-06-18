@@ -13,16 +13,31 @@
 <body>
   <header>
     <div class="hero-section">
-      <h1>Travel Experience Planner 🌍</h1>      
+      <h1>Travel Experience Planner 🌍</h1>          
+
       <section class="search-section">
         <input type="text" id="cityInput" placeholder="Search for a city..." />
-        <button id="searchBtn">🔍 Search</button>        
+        <button id="searchBtn">🔍 Search</button>
+        <div id="desktop">
+          <button id="saveItineraryBtnDesktop">💾 Save</button>
+          <button id="viewItinerariesBtnDesktop">📂 My Itineraries</button>
+        </div>
+
+        <!--toggle menu for smaller screens-->
+        <button id="menuToggle" class="mobile-only">☰</button>
+
+        <div id="mobileMenu" class="mobile-menu hidden">
+          <button id="saveItineraryBtnMobile">💾 Save</button>
+          <button id="viewItinerariesBtnMobile">📂 My Itineraries</button>
+        </div>
+
       </section>
     </div>    
   </header>
 
   <main id="app">
-    <section id="results"></section>
+    <section id="results"></section>   
+
 
     <section id="extras" style="display: none;">
       <h3>Explore</h3>
@@ -53,7 +68,7 @@
           <button id="applyRestaurantFilters">Apply</button>
         </div>
 
-        <div class="filter-group">
+        <div class="filter-group2">
           <h4>🎭 Event Filters</h4>
           <label for="filterEventCategory">Event Category:
             <select id="filterEventCategory">
@@ -74,8 +89,15 @@
         <div id="restaurants"></div>
         <div id="events"></div>
       </div>
+    </section> 
+    
+    <section id="savedItineraries" style="display: none;">
+      <h3>📂 My Saved Itineraries</h3>
+      <div id="itineraryList"></div>
+      <button id="downloadSelected">📥 Download Selected</button>
+      <button id="clearAllItineraries">🗑️ Clear All</button>
+    </section>
 
-    </section>  
   </main>
 
   <script type="module" src="scripts/main.js" defer></script>
