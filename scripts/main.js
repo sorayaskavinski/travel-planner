@@ -144,23 +144,25 @@ function handleViewItineraries() {
 
   if (itineraries.length === 0) {
     itineraryList.innerHTML = '<p>No itineraries saved yet.</p>';
-    return;
+  } else {
+    savedSection.style.display = 'block';
+
+    itineraries.forEach((itinerary, index) => {
+      itineraryList.innerHTML += `
+        <div class="itinerary-card" data-index="${index}">
+          <p><strong>City:</strong> ${itinerary.city?.city}, ${itinerary.city?.country}</p>
+          <p><strong>Restaurant:</strong> ${itinerary.restaurant?.name || 'N/A'}</p>
+          <p><strong>Event:</strong> ${itinerary.event?.name || 'N/A'}</p>
+          <input type="radio" name="selectedItinerary" value="${index}"> Select
+          <hr/>
+        </div>
+      `;
+    });
+
+    // Scroll to saved itineraries
+    savedSection.scrollIntoView({ behavior: 'smooth' });
   }
-
-  savedSection.style.display = 'block';
-
-  itineraries.forEach((itinerary, index) => {
-    itineraryList.innerHTML += `
-      <div class="itinerary-card" data-index="${index}">
-        <p><strong>City:</strong> ${itinerary.city?.city}, ${itinerary.city?.country}</p>
-        <p><strong>Restaurant:</strong> ${itinerary.restaurant?.name || 'N/A'}</p>
-        <p><strong>Event:</strong> ${itinerary.event?.name || 'N/A'}</p>
-        <input type="radio" name="selectedItinerary" value="${index}"> Select
-        <hr/>
-      </div>
-    `;
-  });
-}
+} 
 
 //===========================//
 //         Listeners         //
@@ -293,3 +295,4 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
