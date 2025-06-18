@@ -6,8 +6,11 @@
   <title>Travel Experience Planner</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" />
+
 </head>
+
+<body>
   <header>
     <div class="hero-section">
       <h1>Travel Experience Planner 🌍</h1>      
@@ -17,20 +20,64 @@
       </section>
     </div>    
   </header>
+
   <main id="app">
     <section id="results"></section>
+
     <section id="extras" style="display: none;">
       <h3>Explore</h3>
-      <label for="eventDate">Select a Date:</label>
-      <input type="date" id="eventDate" />
-      <div id="restaurants"></div>
-      <div id="activities"></div>
-    </section>
+      <label for="dateInput">Select a Date:</label>
+      <input type="date" id="dateInput" />
+      
+      <div id="filters">
+        <div class="filter-group">
+          <h4>🍽️ Restaurant Filters</h4>
+          <label>Rating:
+            <select id="filterRating">
+              <option value="">All</option>
+              <option value="4">4+</option>
+              <option value="4.5">4.5+</option>
+            </select>
+          </label>
 
-  
-    
+          <label>Price:
+            <select id="filterPrice">
+              <option value="">All</option>
+              <option value="$">$</option>
+              <option value="$$">$$</option>
+              <option value="$$$">$$$</option>
+              <option value="$$$$">$$$$</option>
+            </select>
+          </label>
+
+          <button id="applyRestaurantFilters">Apply</button>
+        </div>
+
+        <div class="filter-group">
+          <h4>🎭 Event Filters</h4>
+          <label for="filterEventCategory">Event Category:
+            <select id="filterEventCategory">
+              <option value="">All</option>
+              <option value="music">Music</option>
+              <option value="sports">Sports</option>
+              <option value="arts">Arts & Theater</option>
+              <option value="film">Film</option>
+              <option value="miscellaneous">Miscellaneous</option>
+            </select>
+          </label>
+
+          <button id="applyEventFilters">Apply</button>
+        </div>
+      </div>
+
+      <div id="resultsContainer">
+        <div id="restaurants"></div>
+        <div id="events"></div>
+      </div>
+
+    </section>  
   </main>
 
-  <script type="module" src="scripts/main.js"></script>
+  <script type="module" src="scripts/main.js" defer></script>
 </body>
 </html>
